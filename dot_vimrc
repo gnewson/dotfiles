@@ -1,0 +1,88 @@
+" Basic settings -------------------- {{{
+"
+" This must be set first as it changes other options as a side effect
+set nocompatible
+
+execute pathogen#infect()
+execute pathogen#helptags()
+
+syntax on
+filetype plugin indent on
+
+set ignorecase	" case insensitive search
+set smartcase	" case sensitive when uppper case used
+set cursorline  " highlight current line
+
+set spelllang=en_gb
+set spellfile=~/.vim/spell/en.utf-8.add
+" Flash screen instead of beep sound
+set visualbell
+"
+" " Change how vim represents characters on the screen
+set encoding=utf-8
+"
+" " Set the encoding of files written
+set fileencoding=utf-8
+" }}}
+
+" Hardcore mode, disable arrow keys.
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+" vim UI -------------------- {{{
+" }}}
+
+" Commented out the status line as it interferred with the airline plugin
+" Status line -------------------- {{{
+"if has('cmdline_info')
+  "set ruler " show the ruler
+  "set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
+  "set showcmd " show partial commands in status line and
+	      " selected characters/lines in visual mode
+"endif
+" }}}
+
+" Key (re)Mappings -------------------- {{{
+let mapleader = ","
+let maplocalleader = "\\"
+
+:inoremap jk <esc>
+
+" clearing highlighted search
+nnoremap <silent> <leader>/ :nohlsearch<CR>
+
+" Yank from the cursor to the end of the line, to be consistent with C and D
+nnoremap Y y$
+
+" }}}
+
+" FileType specific settings --------------------  {{{
+set expandtab
+set textwidth=79
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set autoindent
+" }}}
+"
+let g:pymode = 1
+
+let g:airline_powerline_fonts = 1
+
+" NERDTree plugin specific commands
+:nnoremap <C-g> :NERDTreeToggle<CR>
+" "autocmd vimenter * NERDTree
+
+" Also run `goimports` on your current file on every save
+" Might be be slow on large codebases, if so, just comment it out
+let g:go_fmt_command = "goimports"
+
+" Status line types/signatures.
+let g:go_auto_type_info = 1
+
+"au filetype go inoremap <buffer> . .<C-x><C-o>
+
+" If you want to disable gofmt on save
+" let g:go_fmt_autosave = 0
